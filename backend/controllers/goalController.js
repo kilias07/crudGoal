@@ -10,8 +10,7 @@ const getGoals = asyncHandler(async(req, res) => {
     res
         .status(200)
         .json(goals);
-})
-
+});
 
 
 //@desc Set goals
@@ -24,13 +23,12 @@ const setGoal = asyncHandler(async(req, res) => {
     }
     const goal = await Goal.create({
         text: req.body.text,
-    })
+    });
 
     res
         .status(200)
         .json(goal);
-})
-
+});
 
 
 //@desc UPDATE goals
@@ -46,11 +44,11 @@ const updateGoal = asyncHandler(async(req, res) => {
     const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     })
+
     res
         .status(200)
         .json({message: updatedGoal});
-})
-
+});
 
 
 //@desc DELETE goals
@@ -63,11 +61,12 @@ const deleteGoal = asyncHandler(async(req, res) => {
         res.status(400);
         throw new Error('Goal not found');
     }
-    await goal.remove()
+    await goal.remove();
+
     res
         .status(200)
         .json({id: req.params.id});
-})
+});
 
 
 module.exports = {
